@@ -54,6 +54,16 @@ namespace SistemaGestionProductos.Interfaz
             btnCategorias.UseVisualStyleBackColor = true;
             btnCategorias.Click += btnCategorias_Click;
             //
+            // btnProductos
+            //
+            btnProductos.Location = new Point(110, 135);
+            btnProductos.Name = "btnProductos";
+            btnProductos.Size = new Size(200, 40);
+            btnProductos.TabIndex = 2;
+            btnProductos.Text = "Productos";
+            btnProductos.UseVisualStyleBackColor = true;
+            btnProductos.Click += btnProductos_Click;
+            //
             // btnSalir
             //
             btnSalir.Location = new Point(110, 185);
