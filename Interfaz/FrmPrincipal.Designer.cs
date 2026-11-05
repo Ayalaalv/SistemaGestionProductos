@@ -30,6 +30,7 @@ namespace SistemaGestionProductos.Interfaz
         {
             lblTitulo = new Label();
             btnCategorias = new Button();
+            btnProductos = new Button();
             btnSalir = new Button();
             SuspendLayout();
             //
@@ -69,6 +70,7 @@ namespace SistemaGestionProductos.Interfaz
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(420, 250);
             Controls.Add(btnSalir);
+            Controls.Add(btnProductos);
             Controls.Add(btnCategorias);
             Controls.Add(lblTitulo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -84,6 +86,7 @@ namespace SistemaGestionProductos.Interfaz
 
         private Label lblTitulo;
         private Button btnCategorias;
+        private Button btnProductos;
         private Button btnSalir;
     }
 }

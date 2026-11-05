@@ -21,6 +21,16 @@ namespace SistemaGestionProductos.Interfaz
             }
         }
 
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            // Se crea un formulario nuevo cada vez, así el ComboBox
+            // recarga las categorías que se hayan agregado mientras tanto.
+            using (FrmProductos frm = new FrmProductos())
+            {
+                frm.ShowDialog(this);
+            }
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
