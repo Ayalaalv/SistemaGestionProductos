@@ -9,14 +9,12 @@ namespace SistemaGestionProductos.Interfaz
     {
         private readonly CategoriaLogica _logica = new CategoriaLogica();
 
-        // Id de la fila seleccionada en la grilla. 0 = no hay ninguna seleccionada.
+        // Id de la fila seleccionada
         private int _idSeleccionado = 0;
 
         public FrmCategorias()
         {
             InitializeComponent();
-            // Las columnas se definieron en el diseñador; sin esto la grilla
-            // agregaría columnas extra por cada propiedad de Categoria.
             dgvCategorias.AutoGenerateColumns = false;
         }
 
@@ -27,6 +25,9 @@ namespace SistemaGestionProductos.Interfaz
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            if (!ValidarCampos())
+                return;
+
             try
             {
                 _logica.Registrar(LeerFormulario());
@@ -42,6 +43,9 @@ namespace SistemaGestionProductos.Interfaz
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            if (!ValidarCampos())
+                return;
+
             try
             {
                 _logica.Modificar(LeerFormulario());
@@ -57,8 +61,6 @@ namespace SistemaGestionProductos.Interfaz
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            // Si no hay selección no tiene sentido preguntar "¿desea eliminar?".
-            // (La capa Logica también lo valida; esto solo evita una pregunta vacía.)
             if (_idSeleccionado <= 0)
             {
                 MostrarError("Seleccione una categoría de la lista.");
@@ -70,7 +72,7 @@ namespace SistemaGestionProductos.Interfaz
                 "Confirmar eliminación",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning,
-                MessageBoxDefaultButton.Button2); // "No" por defecto: evita borrar con un Enter accidental
+                MessageBoxDefaultButton.Button2); 
 
             if (respuesta != DialogResult.Yes)
                 return;
@@ -93,22 +95,33 @@ namespace SistemaGestionProductos.Interfaz
             LimpiarCampos();
         }
 
-        // Al hacer clic en una fila, se pasan sus datos a los cuadros de texto.
         private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
-                return; // clic en el encabezado de columna
+                return; 
 
-            // DataBoundItem es el objeto Categoria original que está detrás de la fila.
             if (dgvCategorias.Rows[e.RowIndex].DataBoundItem is Categoria cat)
             {
+                errorProvider.Clear();
                 _idSeleccionado = cat.IdCategoria;
                 txtNombre.Text = cat.Nombre;
                 txtDescripcion.Text = cat.Descripcion;
             }
         }
 
-        // ----- Métodos auxiliares -----
+        private bool ValidarCampos()
+        {
+            errorProvider.Clear();
+            bool valido = true;
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                errorProvider.SetError(txtNombre, "Ingrese el nombre de la categoría.");
+                valido = false;
+            }
+
+            return valido;
+        }
 
         private void CargarCategorias()
         {
@@ -122,7 +135,6 @@ namespace SistemaGestionProductos.Interfaz
             }
         }
 
-        // Convierte lo que hay en pantalla en un objeto Categoria.
         private Categoria LeerFormulario()
         {
             Categoria cat = new Categoria();
@@ -137,6 +149,7 @@ namespace SistemaGestionProductos.Interfaz
             _idSeleccionado = 0;
             txtNombre.Clear();
             txtDescripcion.Clear();
+            errorProvider.Clear();
             dgvCategorias.ClearSelection();
             txtNombre.Focus();
         }
