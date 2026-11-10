@@ -66,6 +66,8 @@ Los formularios no contienen lógica de negocio ni consultas SQL: solo leen los 
 4. Presionar **F5** para ejecutar.
 
 ---
+## GitHub:
+https://github.com/Ayalaalv/SistemaGestionProductos
 
 ## Declaración de uso de Inteligencia Artificial
 
