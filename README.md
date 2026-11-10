@@ -71,6 +71,7 @@ Los formularios no contienen lógica de negocio ni consultas SQL: solo leen los 
 
 En este proyecto se utilizó Claude como asistente de programación de la siguiente forma:
 
-- Generación de código: la validación con `ErrorProvider` fueron generados con ayuda de la IA y ayuda a la hora de escribir codigo en partes no vistas en su momento en clases
-- Explicación:Se uso para que ayudara a tener una mejor comprensión de la arquitectura en capas y la separación de responsabilidades para su respectiva defensa
-- Se uso para crear la base de datos en SQL
+- **Generación de código:** los formularios `FrmPrincipal`, `FrmCategorias` y `FrmProductos` y la validación con `ErrorProvider` fueron crados paso a paso con ayuda de la IA y los trabajos hecho en clase, también se usó como apoyo para escribir código de temas que aún no se habían visto en clase.
+- **Base de datos:** se usó para crear el script SQL de la base de datos.
+- **Explicación:** se usó para comprender mejor la arquitectura en capas y la separación de responsabilidades, con el fin de preparar la defensa.
+
